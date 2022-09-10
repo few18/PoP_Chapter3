@@ -54,11 +54,12 @@ class Polynomial:
     def __sub__(self, other):
 
         if isinstance(other, Polynomial):
+            other.coefficients = tuple([-1*c for c in other.coefficients])
             common = min(self.degree(), other.degree()) + 1
-            coefs = tuple(a - b for a, b in zip(self.coefficients,
+            coefs = tuple(a + b for a, b in zip(self.coefficients,
                                                 other.coefficients))
-            coefs += self.coefficients[common:] - other.coefficients[common:]
-
+            coefs += self.coefficients[common:] + other.coefficients[common:]
+            
             return Polynomial(coefs)
 
         elif isinstance(other, Number):
@@ -70,3 +71,11 @@ class Polynomial:
 
     def __rsub__(self, other):
         return self - other
+
+    
+    # def __mul__(self, other):
+
+    #     if isinstance(other, Number):
+    #         for 
+
+    
