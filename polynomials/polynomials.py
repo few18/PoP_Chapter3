@@ -107,4 +107,15 @@ class Polynomial:
     def __rmul__(self, other):
         return self * other
 
+    def __pow__(self, exponent):
+        
+        exponentiated = self.__mul__(1)
+        
+        # Repeatedly use __mul__() to exponentiate
+        for i in range(exponent - 1):
+
+            exponentiated = exponentiated.__mul__(self)
+        
+        return exponentiated
+
     
