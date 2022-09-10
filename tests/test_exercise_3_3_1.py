@@ -17,4 +17,4 @@ def test_sub_scalar():
 
 
 def test_reverse_sub_scalar():
-    assert 3 - Polynomial((2, 1)) == Polynomial((1, -1))
+    assert 3 - Polynomial((2, 1)) == Polynomial((-1, 1))
