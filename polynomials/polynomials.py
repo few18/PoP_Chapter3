@@ -73,9 +73,38 @@ class Polynomial:
         return self - other
 
     
-    # def __mul__(self, other):
+    def __mul__(self, other):
 
-    #     if isinstance(other, Number):
-    #         for 
+        if isinstance(other, Number):
+            coefs = tuple([other*c for c in self.coefficients])
+            return Polynomial(coefs)
+
+        elif isinstance(other, Polynomial):
+            # Get degree of both polynomials
+            self_degree = self.degree()
+            other_degree = other.degree()
+
+            # Calulate degree of resulting polynomial
+            result_degree = self_degree + other_degree
+
+            # Make list of required lenght filled with zeros
+            coefs = []
+            for i in range(result_degree + 1):
+                coefs.append(0)
+            
+            # Start a grid multiplying the coefficients
+            for index1, coef1 in enumerate(self.coefficients):
+                for index2, coef2 in enumerate(other.coefficients):
+
+                    coefs[index1 + index2] += coef1 * coef2
+
+            return Polynomial(tuple(coefs))
+
+        else:
+            return NotImplemented
+
+    
+    def __rmul__(self, other):
+        return self * other
 
     
