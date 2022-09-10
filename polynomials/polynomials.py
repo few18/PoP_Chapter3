@@ -110,12 +110,30 @@ class Polynomial:
     def __pow__(self, exponent):
         
         exponentiated = self.__mul__(1)
-        
+
         # Repeatedly use __mul__() to exponentiate
         for i in range(exponent - 1):
 
             exponentiated = exponentiated.__mul__(self)
         
         return exponentiated
+
+    
+    def __call__(self, x):
+
+        if isinstance(x, Number):
+
+            value = 0
+
+            for power, coef in enumerate(self.coefficients):
+
+                value += coef * (pow(x, power))
+
+            return value
+        
+        else:
+            return NotImplemented
+
+    
 
     
