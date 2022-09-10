@@ -134,6 +134,27 @@ class Polynomial:
         else:
             return NotImplemented
 
+        
+    def dx(self):
+
+        new_coefs = []
+
+        if len(self.coefficients) == 1:
+            return Polynomial((0,))
+
+        for power, coef in enumerate(self.coefficients):
+
+            if power == 0:
+                continue
+
+            new_coefs.append(power * coef)
+            
+        print(new_coefs)
+
+        return Polynomial(tuple(new_coefs))
+
     
 
     
+def derivative(f):
+    return f.dx()
